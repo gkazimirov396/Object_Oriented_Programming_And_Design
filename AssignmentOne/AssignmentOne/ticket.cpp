@@ -3,7 +3,7 @@
 #include "ticket.h"
 
 Ticket::Ticket(const std::string& passengerName, const std::string& flightNumber, const std::string& date, int row, int seat)
-    : passengerName(passengerName), flightNumber(flightNumber), date(date), row(row), seat(seat), isBooked(true) {}
+    : passengerName(passengerName), flightNumber(flightNumber), date(date), row(row), seat(seat), isBooked(true), ID(getID()) {}
 
 std::string Ticket::getPassengerName() const {
     return passengerName;
