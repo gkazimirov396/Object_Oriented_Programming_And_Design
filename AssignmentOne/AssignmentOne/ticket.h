@@ -4,7 +4,7 @@
 
 class Ticket {
 private:
-    unsigned long ID;
+    std::string ID;
 
     std::string passengerName;
     std::string flightNumber;
@@ -20,7 +20,7 @@ public:
 
     int getRow() const;
     int getSeat() const;
-    unsigned long getID() const;
+    std::string getID() const;
 
     std::string getDate() const;
     bool getBookingStatus() const;

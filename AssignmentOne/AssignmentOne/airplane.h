@@ -13,7 +13,6 @@ private:
 
     int rows;
     int seatsPerRow;
-    //Ticket nextTicket;
 
     std::vector<Ticket> bookedTickets;
     std::vector<std::vector<bool>> seatAvailability;

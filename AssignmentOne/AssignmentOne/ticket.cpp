@@ -1,4 +1,6 @@
-#include <functional>
+#include <functional> 
+#include <string>       
+#include <sstream>
 
 #include "ticket.h"
 
@@ -25,8 +27,13 @@ int Ticket::getSeat() const {
     return seat;
 }
 
-unsigned long Ticket::getID() const {
-    return std::hash<std::string>{}(passengerName + date + flightNumber + std::to_string(row) + std::to_string(seat));
+std::string Ticket::getID() const {
+    std::hash<std::string> hashFunction;
+
+    std::stringstream ss;
+    ss << passengerName << flightNumber << row << seat;
+
+    return std::to_string(hashFunction(ss.str()));
 }
 
 bool Ticket::getBookingStatus() const {
