@@ -16,7 +16,6 @@ int main() {
         if (command == "check") {
             std::string date, flightNumber;
             std::cin >> date >> flightNumber;
-            std::cout << command;
 
             for (const auto& airplane : airplanes) {
                 if (airplane.getDate() == date && airplane.getFlightNumber() == flightNumber) {
@@ -48,16 +47,35 @@ int main() {
             }
         }
         else if (command == "view") {
-            std::string date, flightNumber;
-            std::cin >> date >> flightNumber;
+            std::string param;
 
-            for (const auto& airplane : airplanes) {
-                if (airplane.getDate() == date && airplane.getFlightNumber() == flightNumber) {
-                    airplane.viewTickets();
+            std::cin >> param;
+
+            if (param == "username") {
+                std::string username;
+                std::cin >> username;
+
+                for (const auto& airplane : airplanes) {
+                    airplane.viewTicketsByUsername(username);
+                }
+
+            }
+            else if (param == "flight") {
+                std::string flightNumber, date;
+                std::cin >> flightNumber >> date;
+
+                for (const auto& airplane : airplanes) {
+                    if (airplane.getDate() == date && airplane.getFlightNumber() == flightNumber) {
+                        airplane.viewTickets();
+                    }
                 }
             }
+            else {
+                std::cout << "Unknown view option!" << std::endl;
+            }
+
         }
-        else if (command == "exit") {
+        else if (command == "e") {
             break;
         }
         else {
