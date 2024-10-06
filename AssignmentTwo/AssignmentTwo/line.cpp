@@ -10,33 +10,27 @@ void Line::draw(std::vector<std::vector<char>>& board) {
     const int BOARD_HEIGHT = board.size();
     const int BOARD_WIDTH = board[0].size();
 
-    int dx = abs(x2 - x1);
-    int dy = abs(y2 - y1);
-    int sx = (x1 < x2) ? 1 : -1;
-    int sy = (y1 < y2) ? 1 : -1;
-    int err = dx - dy;
+    int dx = x2 - x1;
+    int dy = y2 - y1;
 
-    int x = x1;
-    int y = y1;
+    int steps = std::max(abs(dx), abs(dy));
 
-    while (true) {
-        if (x >= 0 && x < BOARD_WIDTH && y >= 0 && y < BOARD_HEIGHT) {
-            board[y][x] = '*';
+    float xIncrement = dx / static_cast<float>(steps);
+    float yIncrement = dy / static_cast<float>(steps);
+
+    float x = x1;
+    float y = y1;
+
+    for (int i = 0; i <= steps; ++i) {
+        int roundedX = static_cast<int>(round(x));
+        int roundedY = static_cast<int>(round(y));
+
+        if (roundedX >= 0 && roundedX < BOARD_WIDTH && roundedY >= 0 && roundedY < BOARD_HEIGHT) {
+            board[roundedY][roundedX] = '*';
         }
 
-        if (x == x2 && y == y2) break;
-
-        int e2 = 2 * err;
-
-        if (e2 > -dy) {
-            err -= dy;
-            x += sx;
-        }
-
-        if (e2 < dx) {
-            err += dx;
-            y += sy;
-        }
+        x += xIncrement;
+        y += yIncrement;
     }
 }
 

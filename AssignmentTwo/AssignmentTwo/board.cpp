@@ -49,7 +49,7 @@ void Board::listShapes() const {
 	}
 }
 
-void Board::addShape(std::shared_ptr<Shape> shape) {
+void Board::addShape(std::shared_ptr<Figure> shape) {
 	shapes.push_back(shape);
 }
 
