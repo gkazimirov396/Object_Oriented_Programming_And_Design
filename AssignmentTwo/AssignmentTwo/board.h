@@ -17,4 +17,6 @@ public:
     void printBoard();
     void listShapes() const;
     void clearBoard();
+    void printAvailableShapes() const;
+    void removeLastShape();
 };

@@ -6,15 +6,19 @@
 Triangle::Triangle(int x, int y, int height) : x(x), y(y), height(height) {}
 
 void Triangle::draw(std::vector<std::vector<char>>& board) {
-    if (height <= 0) return;
-
     const int BOARD_HEIGHT = board.size();
     const int BOARD_WIDTH = board[0].size();
+
+    if (x + height < 0 || x - height >= BOARD_WIDTH || y + height < 0 || y >= BOARD_HEIGHT || height <= 0) {
+        return;
+    }
 
     for (int i = 0; i < height; ++i) {
         int leftMost = x - i;
         int rightMost = x + i; 
         int posY = y + i; 
+
+        if (posY >= BOARD_HEIGHT) break;
 
         if (posY < BOARD_HEIGHT) {
             if (leftMost >= 0 && leftMost < BOARD_WIDTH)

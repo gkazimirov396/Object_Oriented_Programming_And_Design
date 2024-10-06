@@ -8,16 +8,18 @@ const int BOARD_HEIGHT = 25;
 Board::Board() : grid(BOARD_HEIGHT, std::vector<char>(BOARD_WIDTH, ' ')) {}
 
 void Board::clearBoard() {
-	for (int i = 0; i < grid.size(); ++i) {
-		for (int j = 0; j < grid[i].size(); ++j) {
-			grid[i][j] = ' ';
-		}
+	for (auto& row : grid) {
+		std::fill(row.begin(), row.end(), ' ');
 	}
 
 	shapes.clear();
 }
 
 void Board::printBoard() {
+	for (auto& row : grid) {
+		std::fill(row.begin(), row.end(), ' ');
+	}
+
 	for (const auto& shape : shapes) {
 		shape->draw(grid);
 	}
@@ -32,6 +34,11 @@ void Board::printBoard() {
 }
 
 void Board::listShapes() const {
+	if (shapes.empty()) {
+		std::cout << "No shapes on the board.\n";
+		return;
+	}
+
 	for (size_t i = 0; i < shapes.size(); ++i) {
 		std::cout << i + 1 << ": " << shapes[i]->getInfo() << std::endl;
 	}
@@ -39,4 +46,20 @@ void Board::listShapes() const {
 
 void Board::addShape(std::shared_ptr<Shape> shape) {
 	shapes.push_back(shape);
+}
+
+void Board::removeLastShape() {
+	if (!shapes.empty()) {
+		shapes.pop_back();
+	}
+}
+
+void Board::printAvailableShapes() const {
+	std::cout << "Available shapes and their parameters:\n";
+
+	std::cout << "1. square: x y width\n";
+
+	std::cout << "2. triangle: x y height\n";
+
+	std::cout << "3. circle: x y radius\n";
 }

@@ -20,6 +20,9 @@ int main() {
         else if (command == "list") {
             board.listShapes();
         }
+        else if (command == "shapes") {
+            board.printAvailableShapes();
+        }
         else if (command == "add") {
             std::string shapeType;
             std::cin >> shapeType;
@@ -44,7 +47,7 @@ int main() {
             }
         }
         else if (command == "undo") {
-            // TODO
+            board.removeLastShape();
         }
         else if (command == "clear") {
             board.clearBoard();

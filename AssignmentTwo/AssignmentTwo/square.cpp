@@ -5,10 +5,13 @@
 Square::Square(int x, int y, int width) : x(x), y(y), width(width) {}
 
 void Square::draw(std::vector<std::vector<char>>& board) {
-    if (width <= 0) return;
-
     const int BOARD_HEIGHT = board.size();
     const int BOARD_WIDTH = board[0].size();
+
+    if (x + width < 0 || x >= BOARD_WIDTH || y + width < 0 || y >= BOARD_HEIGHT) {
+        return;
+    }
+
 
     for (int i = 0; i < width; ++i) {
         if (y >= 0 && y < BOARD_HEIGHT && (x + i) >= 0 && (x + i) < BOARD_WIDTH) {
