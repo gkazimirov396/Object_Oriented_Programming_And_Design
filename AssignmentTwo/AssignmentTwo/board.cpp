@@ -13,6 +13,11 @@ void Board::clearBoard() {
 }
 
 void Board::printBoard() {
+	clearBoard();
+	for (const auto& shape : shapes) {
+		shape->draw(grid);
+	}
+
 	for (auto& row : grid) {
 		for (char c : row) {
 			std::cout << c;

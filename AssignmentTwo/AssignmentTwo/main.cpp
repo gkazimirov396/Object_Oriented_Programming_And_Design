@@ -3,6 +3,7 @@
 #include <string>
 
 #include "board.h"
+#include "triangle.h"
 
 int main() {
     Board board;
@@ -38,7 +39,7 @@ int main() {
                 int x, y, height;
                 std::cin >> x >> y >> height;
 
-                // TODO
+                board.addShape(std::make_shared<Triangle>(x, y, height));
             }
         }
         else if (command == "undo") {
