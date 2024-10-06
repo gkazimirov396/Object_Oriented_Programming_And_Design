@@ -42,6 +42,7 @@ void Rectangle::draw(std::vector<std::vector<char>>& board) {
 
 std::string Rectangle::getInfo() const {
     std::ostringstream info;
-    info << "Rectangle at (" << x << ", " << y << ") with width " << width << " and height " << height;
+    info << "Rectangle " << x << " " << y << " " << width << " " << height;
+
     return info.str();
 }

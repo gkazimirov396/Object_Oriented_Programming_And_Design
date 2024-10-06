@@ -31,7 +31,7 @@ void Square::draw(std::vector<std::vector<char>>& board) {
 
 std::string Square::getInfo() const {
     std::ostringstream info;
-    info << "Square at (" << x << ", " << y << ") with width " << width;
+    info << "Square " << x << " " << y << " " << width;
 
     return info.str();
 }

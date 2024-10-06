@@ -62,6 +62,16 @@ int main() {
                 }
             }
         }
+        else if (command == "save") {
+            std::string filename;
+            std::cin >> filename;
+            board.saveToFile(filename);
+        }
+        else if (command == "load") {
+            std::string filename;
+            std::cin >> filename;
+            board.loadFromFile(filename);
+        }
         else if (command == "undo") {
             board.removeLastShape();
         }

@@ -40,8 +40,8 @@ void Triangle::draw(std::vector<std::vector<char>>& board) {
 
 
 std::string Triangle::getInfo() const {
-	std::ostringstream info;
-	info << "Triangle at (" << x << ", " << y << ") with height " << height;
+    std::ostringstream info;
+    info << "Triangle " << x << " " << y << " " << height;
 
-	return info.str();
+    return info.str();
 }
