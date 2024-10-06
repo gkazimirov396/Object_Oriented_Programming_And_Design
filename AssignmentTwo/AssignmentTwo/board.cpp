@@ -56,10 +56,19 @@ void Board::removeLastShape() {
 
 void Board::printAvailableShapes() const {
 	std::cout << "Available shapes and their parameters:\n";
-
 	std::cout << "1. square: x y width\n";
+	std::cout << "   - x: X coordinate of the top-left corner\n";
+	std::cout << "   - y: Y coordinate of the top-left corner\n";
+	std::cout << "   - width: The width of the square\n\n";
 
 	std::cout << "2. triangle: x y height\n";
+	std::cout << "   - x: X coordinate of the apex\n";
+	std::cout << "   - y: Y coordinate of the apex\n";
+	std::cout << "   - height: The height of the triangle\n\n";
 
-	std::cout << "3. circle: x y radius\n";
+	std::cout << "3. rectangle: x y width height\n";
+	std::cout << "   - x: X coordinate of the top-left corner\n";
+	std::cout << "   - y: Y coordinate of the top-left corner\n";
+	std::cout << "   - width: The width of the rectangle\n";
+	std::cout << "   - height: The height of the rectangle\n";
 }

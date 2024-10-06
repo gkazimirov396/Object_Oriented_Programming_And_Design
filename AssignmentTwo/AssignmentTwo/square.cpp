@@ -12,7 +12,6 @@ void Square::draw(std::vector<std::vector<char>>& board) {
         return;
     }
 
-
     for (int i = 0; i < width; ++i) {
         if (y >= 0 && y < BOARD_HEIGHT && (x + i) >= 0 && (x + i) < BOARD_WIDTH) {
             board[y][x + i] = '*';

@@ -5,6 +5,7 @@
 #include "board.h"
 #include "square.h"
 #include "triangle.h"
+#include "rectangle.h"
 
 int main() {
     Board board;
@@ -27,23 +28,38 @@ int main() {
             std::string shapeType;
             std::cin >> shapeType;
 
-            if (shapeType == "circle") {
-                int x, y, radius;
-                std::cin >> x >> y >> radius;
+            if (shapeType == "rectangle") {
+                int x, y, width, height;
+                std::cin >> x >> y >> width >> height;
 
-                // TODO
+                if (width > 0 && height > 0) {
+                    board.addShape(std::make_shared<Rectangle>(x, y, width, height));
+                }
+                else {
+                    std::cout << "Radius must be positive." << std::endl;
+                }
             }
             else if (shapeType == "square") {
                 int x, y, width;
                 std::cin >> x >> y >> width;
                 
-                board.addShape(std::make_shared<Square>(x, y, width));
+                if (width > 0) {
+                    board.addShape(std::make_shared<Square>(x, y, width));
+                }
+                else {
+                    std::cout << "Width must be positive." << std::endl;
+                }
             }
             else if (shapeType == "triangle") {
                 int x, y, height;
                 std::cin >> x >> y >> height;
 
-                board.addShape(std::make_shared<Triangle>(x, y, height));
+                if (height > 0) {
+                    board.addShape(std::make_shared<Triangle>(x, y, height));
+                }
+                else {
+                    std::cout << "Height must be positive." << std::endl;
+                }
             }
         }
         else if (command == "undo") {
