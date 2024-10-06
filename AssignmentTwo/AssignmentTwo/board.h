@@ -4,16 +4,16 @@
 #include <memory>
 #include <string>
 
-#include "shape.h"
+#include "figure.h"
 
 class Board {
-    std::vector<std::shared_ptr<Shape>> shapes;
+    std::vector<std::shared_ptr<Figure>> shapes;
     std::vector<std::vector<char>> grid;
 
 public:
     Board();
 
-    void addShape(std::shared_ptr<Shape> shape);
+    void addShape(std::shared_ptr<Figure> shape);
     void printBoard();
     void listShapes() const;
     void clearBoard();

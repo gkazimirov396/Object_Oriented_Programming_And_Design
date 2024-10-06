@@ -1,5 +1,6 @@
 #include <sstream>
 #include <cmath>
+
 #include "line.h"
 
 Line::Line(int x1, int y1, int x2, int y2)
@@ -9,7 +10,6 @@ void Line::draw(std::vector<std::vector<char>>& board) {
     const int BOARD_HEIGHT = board.size();
     const int BOARD_WIDTH = board[0].size();
 
-    // Bresenham's line drawing algorithm
     int dx = abs(x2 - x1);
     int dy = abs(y2 - y1);
     int sx = (x1 < x2) ? 1 : -1;
@@ -20,12 +20,10 @@ void Line::draw(std::vector<std::vector<char>>& board) {
     int y = y1;
 
     while (true) {
-        // Check if the point is within board bounds
         if (x >= 0 && x < BOARD_WIDTH && y >= 0 && y < BOARD_HEIGHT) {
             board[y][x] = '*';
         }
 
-        // Exit loop when line is complete
         if (x == x2 && y == y2) break;
 
         int e2 = 2 * err;

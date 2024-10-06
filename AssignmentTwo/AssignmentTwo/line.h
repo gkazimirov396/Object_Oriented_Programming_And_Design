@@ -1,8 +1,8 @@
 #pragma once
 
-#include "shape.h"
+#include "figure.h"
 
-class Line : public Shape {
+class Line : public Figure {
     int x1, y1, x2, y2;
 
 public:
