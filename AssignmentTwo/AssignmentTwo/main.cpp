@@ -6,6 +6,7 @@
 #include "square.h"
 #include "triangle.h"
 #include "rectangle.h"
+#include "line.h"
 
 int main() {
     Board board;
@@ -60,6 +61,12 @@ int main() {
                 else {
                     std::cout << "Height must be positive." << std::endl;
                 }
+            }
+            else if (shapeType == "line") {
+                int x1, y1, x2, y2;
+                std::cin >> x1 >> y1 >> x2 >> y2;
+
+                board.addShape(std::make_shared<Line>(x1, y1, x2, y2));
             }
         }
         else if (command == "save") {

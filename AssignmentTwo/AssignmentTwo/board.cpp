@@ -5,6 +5,7 @@
 #include "square.h"
 #include "triangle.h"
 #include "rectangle.h"
+#include "line.h"
 
 const int BOARD_WIDTH = 80;
 const int BOARD_HEIGHT = 25;
@@ -75,6 +76,12 @@ void Board::printAvailableShapes() const {
 	std::cout << "   - y: Y coordinate of the top-left corner\n";
 	std::cout << "   - width: The width of the rectangle\n";
 	std::cout << "   - height: The height of the rectangle\n";
+
+    std::cout << "4. line: x1 y1 x2 y2\n";
+    std::cout << "   - x1: X coordinate of the starting point\n";
+    std::cout << "   - y1: Y coordinate of the starting point\n";
+    std::cout << "   - x2: X coordinate of the ending point\n";
+    std::cout << "   - y2: Y coordinate of the ending point\n";
 }
 
 bool Board::saveToFile(const std::string& filename) const {
@@ -154,6 +161,18 @@ bool Board::loadFromFile(const std::string& filename) {
             }
 
             addShape(std::make_shared<Rectangle>(x, y, width, height));
+        }
+        else if (shapeType == "Line") {
+            int x1, y1, x2, y2;
+            inFile >> x1 >> y1 >> x2 >> y2;
+
+            if (inFile.fail()) {
+                std::cerr << "Invalid shape data for line." << std::endl;
+
+                return false;
+            }
+
+            addShape(std::make_shared<Line>(x1, y1, x2, y2));
         }
         else {
             std::cerr << "Unknown shape type in file: " << shapeType << std::endl;
