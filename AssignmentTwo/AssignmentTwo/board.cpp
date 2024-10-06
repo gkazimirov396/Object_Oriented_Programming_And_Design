@@ -8,12 +8,16 @@ const int BOARD_HEIGHT = 25;
 Board::Board() : grid(BOARD_HEIGHT, std::vector<char>(BOARD_WIDTH, ' ')) {}
 
 void Board::clearBoard() {
-	for (auto& row : grid)
-		std::fill(row.begin(), row.end(), ' ');
+	for (int i = 0; i < grid.size(); ++i) {
+		for (int j = 0; j < grid[i].size(); ++j) {
+			grid[i][j] = ' ';
+		}
+	}
+
+	shapes.clear();
 }
 
 void Board::printBoard() {
-	clearBoard();
 	for (const auto& shape : shapes) {
 		shape->draw(grid);
 	}

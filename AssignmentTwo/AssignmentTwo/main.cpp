@@ -3,6 +3,7 @@
 #include <string>
 
 #include "board.h"
+#include "square.h"
 #include "triangle.h"
 
 int main() {
@@ -33,7 +34,7 @@ int main() {
                 int x, y, width;
                 std::cin >> x >> y >> width;
                 
-                // TODO
+                board.addShape(std::make_shared<Square>(x, y, width));
             }
             else if (shapeType == "triangle") {
                 int x, y, height;
