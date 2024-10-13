@@ -3,6 +3,7 @@
 
 #include "board.h"
 #include "square.h"
+#include "line.h"
 
 const int BOARD_WIDTH = 80;
 const int BOARD_HEIGHT = 25;
@@ -198,6 +199,20 @@ bool Board::loadFromFile(const std::string& filename) {
             }
 
             addShape(std::make_shared<Square>(x, y, width, color, fillMode));
+        }
+        else if (shapeType == "Line") {
+            int x1, y1, x2, y2;
+            std::string color, fillModeStr;
+
+            inFile >> x1 >> y1 >> x2 >> y2 >> color;
+
+            if (inFile.fail()) {
+                std::cerr << "Invalid shape data for line." << std::endl;
+
+                return false;
+            }
+
+            addShape(std::make_shared<Line>(x1, y1, x2, y2, color));
         }
         else {
             std::cerr << "Unknown shape type in file: " << shapeType << std::endl;
