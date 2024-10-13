@@ -5,6 +5,7 @@
 #include "square.h"
 #include "line.h"
 #include "rectangle.h"
+#include "triangle.h"
 
 const int BOARD_WIDTH = 80;
 const int BOARD_HEIGHT = 25;
@@ -26,6 +27,15 @@ std::shared_ptr<Figure> Board::selectShapeByCoordinates(int x, int y) {
                 std::cout << "Selected: " << rectangle->getInfo() << std::endl;
 
                 return rectangle;
+            }
+        }
+        else if (auto triangle = std::dynamic_pointer_cast<Triangle>(shape)) {
+            if (triangle->isPointInsideTriangle(x, y, triangle->x, triangle->y,              
+                triangle->x - triangle->height + 1, triangle->y + triangle->height - 1,
+                triangle->x + triangle->height - 1, triangle->y + triangle->height - 1)) {
+                std::cout << "Selected: " << triangle->getInfo() << std::endl;
+
+                return triangle;
             }
         }
     }
@@ -115,6 +125,13 @@ bool Board::editShape(std::shared_ptr<Figure> shape, const std::vector<int>& par
     else if (auto rectangle = std::dynamic_pointer_cast<Rectangle>(shape)) {
         if (params.size() == 2) {
             rectangle->edit(params, grid);
+
+            return true;
+        }
+    }
+    else if (auto triangle = std::dynamic_pointer_cast<Triangle>(shape)) {
+        if (params.size() == 1) {
+            triangle->edit(params, grid);
 
             return true;
         }
@@ -244,6 +261,21 @@ bool Board::loadFromFile(const std::string& filename) {
             }
 
             addShape(std::make_shared<Rectangle>(x, y, width, height, color, fillMode));
+        }
+        else if (shapeType == "Triangle") {
+            int x, y, height;
+            std::string color, fillModeStr;
+
+            inFile >> x >> y >> width >> height >> color >> fillModeStr;
+            FillMode fillMode = (fillModeStr == "Fill" ? FillMode::Fill : FillMode::Frame);
+
+            if (inFile.fail() || height <= 0) {
+                std::cerr << "Invalid shape data for triangle." << std::endl;
+
+                return false;
+            }
+
+            addShape(std::make_shared<Triangle>(x, y, height, color, fillMode));
         }
         else {
             std::cerr << "Unknown shape type in file: " << shapeType << std::endl;

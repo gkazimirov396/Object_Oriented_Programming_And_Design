@@ -77,7 +77,7 @@ void Rectangle::move(int newX, int newY) {
 std::string Rectangle::getInfo() const {
     std::ostringstream info;
     info << getID() << " Rectangle " << x << " " << y << " " << width << " " << height
-        << " " << color << " " << (fillMode == FillMode::Fill ? "Fill" : "Frame");;
+        << " " << color << " " << (fillMode == FillMode::Fill ? "Fill" : "Frame");
 
     return info.str();
 }
