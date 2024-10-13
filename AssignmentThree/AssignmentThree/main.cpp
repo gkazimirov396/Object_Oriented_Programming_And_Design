@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <memory>
 #include <string>
 
@@ -77,6 +78,37 @@ int main() {
 
             if (selectedShape) {
                 board.moveShape(selectedShape, x, y);
+            }
+            else {
+                std::cout << "Error: No shape selected.\n";
+            }
+        }
+        else if (command == "remove") {
+            if (selectedShape) {
+                board.removeShape(selectedShape);
+                selectedShape = nullptr;
+            }
+            else {
+                std::cout << "Error: No shape selected.\n";
+            }
+        }
+        else if (command == "edit") {
+            std::string input;
+
+            std::getline(std::cin, input);
+            std::istringstream iss(input);
+
+            if (selectedShape) {
+                std::vector<int> params;
+                int param;
+
+                while (iss >> param) {
+                    params.push_back(param);
+                }
+
+                if (!board.editShape(selectedShape, params)) {
+                    std::cout << "Error: Invalid parameters or shape out of bounds.\n";
+                }
             }
             else {
                 std::cout << "Error: No shape selected.\n";

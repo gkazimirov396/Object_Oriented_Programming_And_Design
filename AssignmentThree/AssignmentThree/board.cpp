@@ -97,7 +97,7 @@ void Board::removeShape(std::shared_ptr<Figure> shape) {
 bool Board::editShape(std::shared_ptr<Figure> shape, const std::vector<int>& params) {
     if (auto square = std::dynamic_pointer_cast<Square>(shape)) {
         if (params.size() == 1) {
-            square->edit(params);
+            square->edit(params, grid);
 
             return true;
         }
@@ -181,14 +181,14 @@ bool Board::loadFromFile(const std::string& filename) {
         return false;
     }
 
-    std::string shapeType;
+    std::string shapeType, ID;
 
-    while (inFile >> shapeType) {
+    while (inFile >> ID >> shapeType) {
         if (shapeType == "Square") {
             int x, y, width;
-            std::string color, fillModeStr, ID;
+            std::string color, fillModeStr;
 
-            inFile >> ID >> x >> y >> width >> color >> fillModeStr;
+            inFile >> x >> y >> width >> color >> fillModeStr;
             FillMode fillMode = (fillModeStr == "Fill" ? FillMode::Fill : FillMode::Frame);
 
             if (inFile.fail() || width <= 0) {
