@@ -52,9 +52,7 @@ void Square::move(int newX, int newY) {
 }
 
 void Square::edit(const std::vector<int>& params) {
-    if (params.size() == 1) {
-        width = params[0];
-    }
+    // TODO
 }
 
 void Square::paint(const std::string& newColor) {
