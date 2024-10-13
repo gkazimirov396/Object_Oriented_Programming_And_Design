@@ -47,7 +47,7 @@ void Line::move(int newX, int newY) {
 
 std::string Line::getInfo() const {
     std::ostringstream info;
-    info << getID() << " " << "Line " << x1 << " " << y1 << " " << x2 << " " 
+    info << getID() << " Line " << x1 << " " << y1 << " " << x2 << " " 
         << y2 << " " << color << " " << "Fill";
 
     return info.str();

@@ -6,6 +6,7 @@
 #include "board.h"
 #include "square.h"
 #include "line.h";
+#include "rectangle.h"
 
 int main() {
     Board board;
@@ -27,6 +28,7 @@ int main() {
         }
         else if (command == "add") {
             std::string fillModeStr, color, shapeType;
+
             std::cin >> fillModeStr >> color >> shapeType;
             FillMode fillMode = (fillModeStr == "fill") ? FillMode::Fill : FillMode::Frame;
 
@@ -39,6 +41,17 @@ int main() {
                 }
                 else {
                     std::cout << "Width must be positive." << std::endl;
+                }
+            }
+            else if (shapeType == "rectangle") {
+                int x, y, width, height;
+                std::cin >> x >> y >> width >> height;
+
+                if (width > 0 && height > 0) {
+                    board.addShape(std::make_shared<Rectangle>(x, y, width, height, color, fillMode));
+                }
+                else {
+                    std::cout << "Width and height must be positive." << std::endl;
                 }
             }
             else if (shapeType == "line") {

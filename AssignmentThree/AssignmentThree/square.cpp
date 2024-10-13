@@ -41,7 +41,7 @@ void Square::draw(std::vector<std::vector<char>>& board) const {
 
 std::string Square::getInfo() const {
     std::ostringstream info;
-    info << getID() << " " << "Square " << x << " " << y << " " << width << " " << color
+    info << getID() << " Square " << x << " " << y << " " << width << " " << color
         << " " << (fillMode == FillMode::Fill ? "Fill" : "Frame");
 
     return info.str();

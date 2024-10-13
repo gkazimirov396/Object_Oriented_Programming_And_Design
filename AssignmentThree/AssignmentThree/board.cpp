@@ -4,6 +4,7 @@
 #include "board.h"
 #include "square.h"
 #include "line.h"
+#include "rectangle.h"
 
 const int BOARD_WIDTH = 80;
 const int BOARD_HEIGHT = 25;
@@ -17,6 +18,14 @@ std::shared_ptr<Figure> Board::selectShapeByCoordinates(int x, int y) {
                 std::cout << "Selected: " << square->getInfo() << std::endl;
 
                 return square;
+            }
+        }
+        else if (auto rectangle = std::dynamic_pointer_cast<Rectangle>(shape)) {
+            if ((x >= rectangle->x && x < rectangle->x + rectangle->width &&
+                y >= rectangle->y && y < rectangle->y + rectangle->height)) {
+                std::cout << "Selected: " << rectangle->getInfo() << std::endl;
+
+                return rectangle;
             }
         }
     }
@@ -99,6 +108,13 @@ bool Board::editShape(std::shared_ptr<Figure> shape, const std::vector<int>& par
     if (auto square = std::dynamic_pointer_cast<Square>(shape)) {
         if (params.size() == 1) {
             square->edit(params, grid);
+
+            return true;
+        }
+    }
+    else if (auto rectangle = std::dynamic_pointer_cast<Rectangle>(shape)) {
+        if (params.size() == 2) {
+            rectangle->edit(params, grid);
 
             return true;
         }
@@ -202,7 +218,7 @@ bool Board::loadFromFile(const std::string& filename) {
         }
         else if (shapeType == "Line") {
             int x1, y1, x2, y2;
-            std::string color, fillModeStr;
+            std::string color;
 
             inFile >> x1 >> y1 >> x2 >> y2 >> color;
 
@@ -213,6 +229,21 @@ bool Board::loadFromFile(const std::string& filename) {
             }
 
             addShape(std::make_shared<Line>(x1, y1, x2, y2, color));
+        }
+        else if (shapeType == "Rectangle") {
+            int x, y, width, height;
+            std::string color, fillModeStr;
+
+            inFile >> x >> y >> width >> height >> color >> fillModeStr;
+            FillMode fillMode = (fillModeStr == "Fill" ? FillMode::Fill : FillMode::Frame);
+
+            if (inFile.fail() || width <= 0 || height <= 0) {
+                std::cerr << "Invalid shape data for rectangle." << std::endl;
+
+                return false;
+            }
+
+            addShape(std::make_shared<Rectangle>(x, y, width, height, color, fillMode));
         }
         else {
             std::cerr << "Unknown shape type in file: " << shapeType << std::endl;
