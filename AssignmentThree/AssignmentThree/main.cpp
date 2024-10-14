@@ -77,6 +77,11 @@ int main() {
             std::string option;
             std::cin >> option;
 
+            if (selectedShape) {
+                std::cout << "Error: Shape already selected.\n";
+                continue;
+            }
+
             if (option == "id") {
                 std::string id;
                 std::cin >> id;
@@ -163,6 +168,11 @@ int main() {
             std::cin >> filename;
 
             board.loadFromFile(filename);
+        }
+        else if (command == "cancel") {
+            std::cout << "Unselected: " << selectedShape->getInfo();
+
+            selectedShape = nullptr;
         }
         else if (command == "undo") {
             board.removeLastShape();
