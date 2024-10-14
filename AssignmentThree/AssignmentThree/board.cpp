@@ -30,12 +30,17 @@ std::shared_ptr<Figure> Board::selectShapeByCoordinates(int x, int y) {
             }
         }
         else if (auto triangle = std::dynamic_pointer_cast<Triangle>(shape)) {
-            if (triangle->isPointInsideTriangle(x, y, triangle->x, triangle->y,              
-                triangle->x - triangle->height + 1, triangle->y + triangle->height - 1,
-                triangle->x + triangle->height - 1, triangle->y + triangle->height - 1)) {
+            if (triangle->isPointInsideTriangle(x, y)) {
                 std::cout << "Selected: " << triangle->getInfo() << std::endl;
 
                 return triangle;
+            }
+        }
+        else if (auto line = std::dynamic_pointer_cast<Line>(shape)) {
+            if (line->isPointOnLine(x, y)) {
+                std::cout << "Selected: " << line->getInfo() << std::endl;
+
+                return line;
             }
         }
     }
@@ -135,6 +140,9 @@ bool Board::editShape(std::shared_ptr<Figure> shape, const std::vector<int>& par
 
             return true;
         }
+    }
+    else if (auto line = std::dynamic_pointer_cast<Line>(shape)) {
+        line->edit(params, grid);
     }
 
     std::cout << "Error: Invalid parameters for this shape.\n";

@@ -3,6 +3,7 @@
 #include <cmath>
 
 #include "utils.cpp"
+
 #include "line.h"
 
 Line::Line(int x1, int y1, int x2, int y2, const std::string& color, FillMode fillMode)
@@ -42,7 +43,22 @@ void Line::draw(std::vector<std::vector<char>>& board) const {
 }
 
 void Line::move(int newX, int newY) {
-    // TODO
+    return;
+}
+
+void Line::moveLine(int newX1, int newX2, int newY1, int newY2) {
+    x1 = newX1;
+    x2 = newX2;
+
+    y1 = newY1;
+    y2 = newY2;
+}
+
+bool Line::isPointOnLine(int x, int y) const {
+    int dx = x2 - x1;
+    int dy = y2 - y1;
+
+    return (dy * (x - x1) == dx * (y - y1));
 }
 
 std::string Line::getInfo() const {

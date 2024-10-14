@@ -1,10 +1,10 @@
 #include <string>
 #include <sstream>
+#include <iostream>
 
 #include "utils.cpp"
 
 #include "triangle.h"
-#include <iostream>
 
 Triangle::Triangle(int x, int y, int height, const std::string& color, FillMode fillMode) 
     : x(x), y(y), height(height) {
@@ -96,10 +96,16 @@ std::string Triangle::getInfo() const {
     return info.str();
 }
 
-bool Triangle::isPointInsideTriangle(int px, int py,
-    int x1, int y1,
-    int x2, int y2,
-    int x3, int y3) {
+bool Triangle::isPointInsideTriangle(int px, int py) {
+    int x1 = x;
+    int y1 = y;
+
+    int x2 = x - height + 1;
+    int y2 = y + height - 1;
+
+    int x3 = x + height - 1;
+    int y3 = y + height - 1;
+
     int denominator = (y2 - y3) * (x1 - x3) + (x3 - x2) * (y1 - y3);
 
     float alpha = ((y2 - y3) * (px - x3) + (x3 - x2) * (py - y3)) / (float)denominator;

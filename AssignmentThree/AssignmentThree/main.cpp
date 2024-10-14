@@ -5,7 +5,7 @@
 
 #include "board.h"
 #include "square.h"
-#include "line.h";
+#include "line.h"
 #include "rectangle.h"
 #include "triangle.h"
 
@@ -108,7 +108,13 @@ int main() {
             int x, y;
             std::cin >> x >> y;
 
-            if (selectedShape) {
+            if (auto line = std::dynamic_pointer_cast<Line>(selectedShape)) {
+                int x2, y2;
+                std::cin >> x2 >> y2;
+
+                line->moveLine(x, x2, y, y2);
+            }
+            else if (selectedShape) {
                 board.moveShape(selectedShape, x, y);
             }
             else {
