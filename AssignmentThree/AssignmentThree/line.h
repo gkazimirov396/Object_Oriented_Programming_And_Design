@@ -10,10 +10,9 @@ public:
     void draw(std::vector<std::vector<char>>& board) const override;
     std::string getInfo() const override;
 
-    void move(int newX, int newY) override;
+    void move(int newX1, int newY1, int newX2, int newY2) override;
     void edit(const std::vector<int>& params, std::vector<std::vector<char>>& board) override;
     void paint(const std::string& newColor) override;
 
     bool isPointOnLine(int x, int y) const;
-    void moveLine(int newX1, int nexX2, int newY1, int nexY2);
 };

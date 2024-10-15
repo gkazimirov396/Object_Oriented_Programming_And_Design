@@ -81,7 +81,7 @@ int main() {
                 std::cout << "Error: Shape already selected.\n";
                 continue;
             }
-
+            
             if (option == "id") {
                 std::string id;
                 std::cin >> id;
@@ -117,7 +117,7 @@ int main() {
                 int x2, y2;
                 std::cin >> x2 >> y2;
 
-                line->moveLine(x, x2, y, y2);
+                line->move(x, x2, y, y2);
             }
             else if (selectedShape) {
                 board.moveShape(selectedShape, x, y);

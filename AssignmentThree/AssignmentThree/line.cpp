@@ -42,11 +42,7 @@ void Line::draw(std::vector<std::vector<char>>& board) const {
     }
 }
 
-void Line::move(int newX, int newY) {
-    return;
-}
-
-void Line::moveLine(int newX1, int newX2, int newY1, int newY2) {
+void Line::move(int newX1, int newY1, int newX2, int newY2) {
     x1 = newX1;
     x2 = newX2;
 
