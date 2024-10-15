@@ -83,9 +83,14 @@ void Triangle::paint(const std::string& newColor) {
     color = newColor;
 }
 
-void Triangle::move(int newX, int newY) {
-    x = newX;
-    y = newY;
+void Triangle::move(const std::vector<int>& params) {
+    if (params.size() == 2) {
+        x = params[0];
+        y = params[1];
+    }
+    else {
+        std::cout << "Error: To move a triangle you need to provide (x, y).\n";
+    }
 }
 
 std::string Triangle::getInfo() const {

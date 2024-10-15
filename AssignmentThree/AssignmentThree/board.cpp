@@ -153,8 +153,8 @@ void Board::paintShape(std::shared_ptr<Figure> shape, const std::string& color) 
     shape->paint(color);
 }
 
-void Board::moveShape(std::shared_ptr<Figure> shape, int x, int y) {
-    shape->move(x, y);
+void Board::moveShape(std::shared_ptr<Figure> shape, const std::vector<int>& params) {
+    shape->move(params);
 }
 
 void Board::printAvailableShapes() const {

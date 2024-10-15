@@ -110,17 +110,20 @@ int main() {
             }
         }
         else if (command == "move") {
-            int x, y;
-            std::cin >> x >> y;
+            std::string input;
 
-            if (auto line = std::dynamic_pointer_cast<Line>(selectedShape)) {
-                int x2, y2;
-                std::cin >> x2 >> y2;
+            std::getline(std::cin, input);
+            std::istringstream iss(input);
 
-                line->move(x, x2, y, y2);
-            }
-            else if (selectedShape) {
-                board.moveShape(selectedShape, x, y);
+            if (selectedShape) {
+                std::vector<int> params;
+                int param;
+
+                while (iss >> param) {
+                    params.push_back(param);
+                }
+
+                board.moveShape(selectedShape, params);
             }
             else {
                 std::cout << "Error: No shape selected.\n";

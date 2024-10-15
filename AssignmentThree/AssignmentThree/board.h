@@ -19,7 +19,7 @@ public:
     void removeShape(std::shared_ptr<Figure> shape);
     void paintShape(std::shared_ptr<Figure> shape, const std::string& color);
     bool editShape(std::shared_ptr<Figure> shape, const std::vector<int>& params);
-    void moveShape(std::shared_ptr<Figure> shape, int x, int y);
+    void moveShape(std::shared_ptr<Figure> shape, const std::vector<int>& params);
 
     void addShape(std::shared_ptr<Figure> shape);
     void printBoard();

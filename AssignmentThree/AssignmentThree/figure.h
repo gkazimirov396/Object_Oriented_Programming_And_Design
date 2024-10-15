@@ -15,8 +15,7 @@ public:
     virtual void draw(std::vector<std::vector<char>>& board) const = 0;
     virtual std::string getInfo() const = 0;
 
-    virtual void move(int x, int y) = 0;
-    virtual void move(int x1, int y1, int x2, int y2) = 0;
+    virtual void move(const std::vector<int>& params) = 0;
     virtual void edit(const std::vector<int>& params, std::vector<std::vector<char>>& board) = 0;
     virtual void paint(const std::string& color) = 0;
 

@@ -69,9 +69,14 @@ void Rectangle::paint(const std::string& newColor) {
     color = newColor;
 }
 
-void Rectangle::move(int newX, int newY) {
-    x = newX;
-    y = newY;
+void Rectangle::move(const std::vector<int>& params) {
+    if (params.size() == 2) {
+        x = params[0];
+        y = params[1];
+    }
+    else {
+        std::cout << "Error: To move a rectangle you need to provide (x, y).\n";
+    }
 }
 
 std::string Rectangle::getInfo() const {

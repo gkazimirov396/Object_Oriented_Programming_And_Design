@@ -42,12 +42,17 @@ void Line::draw(std::vector<std::vector<char>>& board) const {
     }
 }
 
-void Line::move(int newX1, int newY1, int newX2, int newY2) {
-    x1 = newX1;
-    x2 = newX2;
+void Line::move(const std::vector<int>& params) {
+    if (params.size() == 4) {
+        x1 = params[0];
+        x2 = params[2];
 
-    y1 = newY1;
-    y2 = newY2;
+        y1 = params[1];
+        y2 = params[3];
+    }
+    else {
+        std::cout << "Error: To move a line you need to provide (x1, y1, x2, y2).\n";
+    }
 }
 
 bool Line::isPointOnLine(int x, int y) const {
@@ -66,7 +71,7 @@ std::string Line::getInfo() const {
 }
 
 void Line::edit(const std::vector<int>& params, std::vector<std::vector<char>>& board) {
-    std::cout << "Cannot edit a line, since it has no dimensional attributes.\n";
+    std::cout << "Error: Cannot edit a line, since it has no dimensional attributes.\n";
     return;
 }
 

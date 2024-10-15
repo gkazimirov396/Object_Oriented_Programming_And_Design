@@ -47,9 +47,14 @@ std::string Square::getInfo() const {
     return info.str();
 }
 
-void Square::move(int newX, int newY) {
-    x = newX;
-    y = newY;
+void Square::move(const std::vector<int>& params) {
+    if (params.size() == 2) {
+        x = params[0];
+        y = params[1];
+    }
+    else {
+        std::cout << "Error: To move a square you need to provide (x, y).\n";
+    }
 }
 
 void Square::edit(const std::vector<int>& params, std::vector<std::vector<char>>& board) {
