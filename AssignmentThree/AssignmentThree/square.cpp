@@ -76,3 +76,7 @@ void Square::edit(const std::vector<int>& params, std::vector<std::vector<char>>
 void Square::paint(const std::string& newColor) {
     color = newColor;
 }
+
+bool Square::isPointInsideSquare(int px, int py) const {
+    return (px >= x && px < x + width && py >= y && py < y + width);
+}

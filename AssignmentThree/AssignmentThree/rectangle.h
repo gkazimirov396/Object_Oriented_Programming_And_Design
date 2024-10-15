@@ -13,4 +13,6 @@ public:
     void move(int newX, int newY) override;
     void edit(const std::vector<int>& params, std::vector<std::vector<char>>& board) override;
     void paint(const std::string& newColor) override;
+
+    bool isPointInsideRectangle(int x, int y) const;
 };

@@ -81,3 +81,7 @@ std::string Rectangle::getInfo() const {
 
     return info.str();
 }
+
+bool Rectangle::isPointInsideRectangle(int px, int py) const {
+    return (px >= x && px < x + width && py >= y && py < y + height);
+}

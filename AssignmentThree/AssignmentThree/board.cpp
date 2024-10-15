@@ -15,15 +15,14 @@ Board::Board() : grid(BOARD_HEIGHT, std::vector<char>(BOARD_WIDTH, ' ')) {}
 std::shared_ptr<Figure> Board::selectShapeByCoordinates(int x, int y) {
     for (const auto& shape : shapes) {
         if (auto square = std::dynamic_pointer_cast<Square>(shape)) {
-            if ((x >= square->x && x < square->x + square->width && y >= square->y && y < square->y + square->width)) {
+            if (square->isPointInsideSquare(x, y)) {
                 std::cout << "Selected: " << square->getInfo() << std::endl;
 
                 return square;
             }
         }
         else if (auto rectangle = std::dynamic_pointer_cast<Rectangle>(shape)) {
-            if ((x >= rectangle->x && x < rectangle->x + rectangle->width &&
-                y >= rectangle->y && y < rectangle->y + rectangle->height)) {
+            if (rectangle->isPointInsideRectangle(x, y)) {
                 std::cout << "Selected: " << rectangle->getInfo() << std::endl;
 
                 return rectangle;
